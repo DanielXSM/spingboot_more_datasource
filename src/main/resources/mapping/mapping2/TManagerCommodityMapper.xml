@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hd.beast.mapper.mapper2.TManagerCommodityMapper">
+  <resultMap id="BaseResultMap" type="com.hd.beast.entity.entity2.TManagerCommodity">
+    <id column="commodity_id" jdbcType="BIGINT" property="commodityId" />
+    <result column="supplier_com_id" jdbcType="BIGINT" property="supplierComId" />
+    <result column="real_price" jdbcType="NUMERIC" property="realPrice" />
+    <result column="commodity_name" jdbcType="VARCHAR" property="commodityName" />
+    <result column="commodity_desc" jdbcType="VARCHAR" property="commodityDesc" />
+    <result column="commodity_logo" jdbcType="VARCHAR" property="commodityLogo" />
+    <result column="reference_price" jdbcType="VARCHAR" property="referencePrice" />
+    <result column="price_desc" jdbcType="VARCHAR" property="priceDesc" />
+    <result column="validity_type" jdbcType="SMALLINT" property="validityType" />
+    <result column="start_time" jdbcType="BIGINT" property="startTime" />
+    <result column="end_time" jdbcType="BIGINT" property="endTime" />
+    <result column="using_flag" jdbcType="SMALLINT" property="usingFlag" />
+    <result column="sort_flag" jdbcType="SMALLINT" property="sortFlag" />
+    <result column="commodity_type" jdbcType="BIGINT" property="commodityType" />
+    <result column="supplier_id" jdbcType="BIGINT" property="supplierId" />
+    <result column="max_deal_num" jdbcType="SMALLINT" property="maxDealNum" />
+    <result column="min_deal_num" jdbcType="SMALLINT" property="minDealNum" />
+    <result column="deal_unit" jdbcType="SMALLINT" property="dealUnit" />
+    <result column="total_buy_limit" jdbcType="BIGINT" property="totalBuyLimit" />
+    <result column="to_pay_num" jdbcType="INTEGER" property="toPayNum" />
+    <result column="carriage" jdbcType="NUMERIC" property="carriage" />
+    <result column="stock" jdbcType="BIGINT" property="stock" />
+    <result column="frozen_stock" jdbcType="BIGINT" property="frozenStock" />
+    <result column="in_storage_time" jdbcType="BIGINT" property="inStorageTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="operate_user" jdbcType="BIGINT" property="operateUser" />
+    <result column="point_real_price" jdbcType="NUMERIC" property="pointRealPrice" />
+    <result column="commodity_price_type" jdbcType="VARCHAR" property="commodityPriceType" />
+    <result column="active_type" jdbcType="SMALLINT" property="activeType" />
+    <result column="call_service" jdbcType="VARCHAR" property="callService" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    commodity_id, supplier_com_id, real_price, commodity_name, commodity_desc, commodity_logo, 
+    reference_price, price_desc, validity_type, start_time, end_time, using_flag, sort_flag, 
+    commodity_type, supplier_id, max_deal_num, min_deal_num, deal_unit, total_buy_limit, 
+    to_pay_num, carriage, stock, frozen_stock, in_storage_time, update_time, operate_user, 
+    point_real_price, commodity_price_type, active_type, call_service
+  </sql>
+  <select id="selectByExample" parameterType="com.hd.beast.entity.entity2.TManagerCommodityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from "public"."T_MANAGER_COMMODITY"
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from "public"."T_MANAGER_COMMODITY"
+    where commodity_id = #{commodityId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from "public"."T_MANAGER_COMMODITY"
+    where commodity_id = #{commodityId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hd.beast.entity.entity2.TManagerCommodityExample">
+    delete from "public"."T_MANAGER_COMMODITY"
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hd.beast.entity.entity2.TManagerCommodity">
+    insert into "public"."T_MANAGER_COMMODITY" (commodity_id, supplier_com_id, real_price, 
+      commodity_name, commodity_desc, commodity_logo, 
+      reference_price, price_desc, validity_type, 
+      start_time, end_time, using_flag, 
+      sort_flag, commodity_type, supplier_id, 
+      max_deal_num, min_deal_num, deal_unit, 
+      total_buy_limit, to_pay_num, carriage, 
+      stock, frozen_stock, in_storage_time, 
+      update_time, operate_user, point_real_price, 
+      commodity_price_type, active_type, call_service
+      )
+    values (#{commodityId,jdbcType=BIGINT}, #{supplierComId,jdbcType=BIGINT}, #{realPrice,jdbcType=NUMERIC}, 
+      #{commodityName,jdbcType=VARCHAR}, #{commodityDesc,jdbcType=VARCHAR}, #{commodityLogo,jdbcType=VARCHAR}, 
+      #{referencePrice,jdbcType=VARCHAR}, #{priceDesc,jdbcType=VARCHAR}, #{validityType,jdbcType=SMALLINT}, 
+      #{startTime,jdbcType=BIGINT}, #{endTime,jdbcType=BIGINT}, #{usingFlag,jdbcType=SMALLINT}, 
+      #{sortFlag,jdbcType=SMALLINT}, #{commodityType,jdbcType=BIGINT}, #{supplierId,jdbcType=BIGINT}, 
+      #{maxDealNum,jdbcType=SMALLINT}, #{minDealNum,jdbcType=SMALLINT}, #{dealUnit,jdbcType=SMALLINT}, 
+      #{totalBuyLimit,jdbcType=BIGINT}, #{toPayNum,jdbcType=INTEGER}, #{carriage,jdbcType=NUMERIC}, 
+      #{stock,jdbcType=BIGINT}, #{frozenStock,jdbcType=BIGINT}, #{inStorageTime,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=BIGINT}, #{operateUser,jdbcType=BIGINT}, #{pointRealPrice,jdbcType=NUMERIC}, 
+      #{commodityPriceType,jdbcType=VARCHAR}, #{activeType,jdbcType=SMALLINT}, #{callService,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hd.beast.entity.entity2.TManagerCommodity">
+    insert into "public"."T_MANAGER_COMMODITY"
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commodityId != null">
+        commodity_id,
+      </if>
+      <if test="supplierComId != null">
+        supplier_com_id,
+      </if>
+      <if test="realPrice != null">
+        real_price,
+      </if>
+      <if test="commodityName != null">
+        commodity_name,
+      </if>
+      <if test="commodityDesc != null">
+        commodity_desc,
+      </if>
+      <if test="commodityLogo != null">
+        commodity_logo,
+      </if>
+      <if test="referencePrice != null">
+        reference_price,
+      </if>
+      <if test="priceDesc != null">
+        price_desc,
+      </if>
+      <if test="validityType != null">
+        validity_type,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="usingFlag != null">
+        using_flag,
+      </if>
+      <if test="sortFlag != null">
+        sort_flag,
+      </if>
+      <if test="commodityType != null">
+        commodity_type,
+      </if>
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="maxDealNum != null">
+        max_deal_num,
+      </if>
+      <if test="minDealNum != null">
+        min_deal_num,
+      </if>
+      <if test="dealUnit != null">
+        deal_unit,
+      </if>
+      <if test="totalBuyLimit != null">
+        total_buy_limit,
+      </if>
+      <if test="toPayNum != null">
+        to_pay_num,
+      </if>
+      <if test="carriage != null">
+        carriage,
+      </if>
+      <if test="stock != null">
+        stock,
+      </if>
+      <if test="frozenStock != null">
+        frozen_stock,
+      </if>
+      <if test="inStorageTime != null">
+        in_storage_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="operateUser != null">
+        operate_user,
+      </if>
+      <if test="pointRealPrice != null">
+        point_real_price,
+      </if>
+      <if test="commodityPriceType != null">
+        commodity_price_type,
+      </if>
+      <if test="activeType != null">
+        active_type,
+      </if>
+      <if test="callService != null">
+        call_service,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commodityId != null">
+        #{commodityId,jdbcType=BIGINT},
+      </if>
+      <if test="supplierComId != null">
+        #{supplierComId,jdbcType=BIGINT},
+      </if>
+      <if test="realPrice != null">
+        #{realPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="commodityName != null">
+        #{commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityDesc != null">
+        #{commodityDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityLogo != null">
+        #{commodityLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="referencePrice != null">
+        #{referencePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="priceDesc != null">
+        #{priceDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="validityType != null">
+        #{validityType,jdbcType=SMALLINT},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="usingFlag != null">
+        #{usingFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="sortFlag != null">
+        #{sortFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="commodityType != null">
+        #{commodityType,jdbcType=BIGINT},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="maxDealNum != null">
+        #{maxDealNum,jdbcType=SMALLINT},
+      </if>
+      <if test="minDealNum != null">
+        #{minDealNum,jdbcType=SMALLINT},
+      </if>
+      <if test="dealUnit != null">
+        #{dealUnit,jdbcType=SMALLINT},
+      </if>
+      <if test="totalBuyLimit != null">
+        #{totalBuyLimit,jdbcType=BIGINT},
+      </if>
+      <if test="toPayNum != null">
+        #{toPayNum,jdbcType=INTEGER},
+      </if>
+      <if test="carriage != null">
+        #{carriage,jdbcType=NUMERIC},
+      </if>
+      <if test="stock != null">
+        #{stock,jdbcType=BIGINT},
+      </if>
+      <if test="frozenStock != null">
+        #{frozenStock,jdbcType=BIGINT},
+      </if>
+      <if test="inStorageTime != null">
+        #{inStorageTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="operateUser != null">
+        #{operateUser,jdbcType=BIGINT},
+      </if>
+      <if test="pointRealPrice != null">
+        #{pointRealPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="commodityPriceType != null">
+        #{commodityPriceType,jdbcType=VARCHAR},
+      </if>
+      <if test="activeType != null">
+        #{activeType,jdbcType=SMALLINT},
+      </if>
+      <if test="callService != null">
+        #{callService,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hd.beast.entity.entity2.TManagerCommodityExample" resultType="java.lang.Long">
+    select count(*) from "public"."T_MANAGER_COMMODITY"
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update "public"."T_MANAGER_COMMODITY"
+    <set>
+      <if test="record.commodityId != null">
+        commodity_id = #{record.commodityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.supplierComId != null">
+        supplier_com_id = #{record.supplierComId,jdbcType=BIGINT},
+      </if>
+      <if test="record.realPrice != null">
+        real_price = #{record.realPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="record.commodityName != null">
+        commodity_name = #{record.commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commodityDesc != null">
+        commodity_desc = #{record.commodityDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commodityLogo != null">
+        commodity_logo = #{record.commodityLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.referencePrice != null">
+        reference_price = #{record.referencePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.priceDesc != null">
+        price_desc = #{record.priceDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.validityType != null">
+        validity_type = #{record.validityType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.startTime != null">
+        start_time = #{record.startTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.endTime != null">
+        end_time = #{record.endTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.usingFlag != null">
+        using_flag = #{record.usingFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="record.sortFlag != null">
+        sort_flag = #{record.sortFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="record.commodityType != null">
+        commodity_type = #{record.commodityType,jdbcType=BIGINT},
+      </if>
+      <if test="record.supplierId != null">
+        supplier_id = #{record.supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="record.maxDealNum != null">
+        max_deal_num = #{record.maxDealNum,jdbcType=SMALLINT},
+      </if>
+      <if test="record.minDealNum != null">
+        min_deal_num = #{record.minDealNum,jdbcType=SMALLINT},
+      </if>
+      <if test="record.dealUnit != null">
+        deal_unit = #{record.dealUnit,jdbcType=SMALLINT},
+      </if>
+      <if test="record.totalBuyLimit != null">
+        total_buy_limit = #{record.totalBuyLimit,jdbcType=BIGINT},
+      </if>
+      <if test="record.toPayNum != null">
+        to_pay_num = #{record.toPayNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.carriage != null">
+        carriage = #{record.carriage,jdbcType=NUMERIC},
+      </if>
+      <if test="record.stock != null">
+        stock = #{record.stock,jdbcType=BIGINT},
+      </if>
+      <if test="record.frozenStock != null">
+        frozen_stock = #{record.frozenStock,jdbcType=BIGINT},
+      </if>
+      <if test="record.inStorageTime != null">
+        in_storage_time = #{record.inStorageTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.operateUser != null">
+        operate_user = #{record.operateUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.pointRealPrice != null">
+        point_real_price = #{record.pointRealPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="record.commodityPriceType != null">
+        commodity_price_type = #{record.commodityPriceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activeType != null">
+        active_type = #{record.activeType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.callService != null">
+        call_service = #{record.callService,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update "public"."T_MANAGER_COMMODITY"
+    set commodity_id = #{record.commodityId,jdbcType=BIGINT},
+      supplier_com_id = #{record.supplierComId,jdbcType=BIGINT},
+      real_price = #{record.realPrice,jdbcType=NUMERIC},
+      commodity_name = #{record.commodityName,jdbcType=VARCHAR},
+      commodity_desc = #{record.commodityDesc,jdbcType=VARCHAR},
+      commodity_logo = #{record.commodityLogo,jdbcType=VARCHAR},
+      reference_price = #{record.referencePrice,jdbcType=VARCHAR},
+      price_desc = #{record.priceDesc,jdbcType=VARCHAR},
+      validity_type = #{record.validityType,jdbcType=SMALLINT},
+      start_time = #{record.startTime,jdbcType=BIGINT},
+      end_time = #{record.endTime,jdbcType=BIGINT},
+      using_flag = #{record.usingFlag,jdbcType=SMALLINT},
+      sort_flag = #{record.sortFlag,jdbcType=SMALLINT},
+      commodity_type = #{record.commodityType,jdbcType=BIGINT},
+      supplier_id = #{record.supplierId,jdbcType=BIGINT},
+      max_deal_num = #{record.maxDealNum,jdbcType=SMALLINT},
+      min_deal_num = #{record.minDealNum,jdbcType=SMALLINT},
+      deal_unit = #{record.dealUnit,jdbcType=SMALLINT},
+      total_buy_limit = #{record.totalBuyLimit,jdbcType=BIGINT},
+      to_pay_num = #{record.toPayNum,jdbcType=INTEGER},
+      carriage = #{record.carriage,jdbcType=NUMERIC},
+      stock = #{record.stock,jdbcType=BIGINT},
+      frozen_stock = #{record.frozenStock,jdbcType=BIGINT},
+      in_storage_time = #{record.inStorageTime,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=BIGINT},
+      operate_user = #{record.operateUser,jdbcType=BIGINT},
+      point_real_price = #{record.pointRealPrice,jdbcType=NUMERIC},
+      commodity_price_type = #{record.commodityPriceType,jdbcType=VARCHAR},
+      active_type = #{record.activeType,jdbcType=SMALLINT},
+      call_service = #{record.callService,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hd.beast.entity.entity2.TManagerCommodity">
+    update "public"."T_MANAGER_COMMODITY"
+    <set>
+      <if test="supplierComId != null">
+        supplier_com_id = #{supplierComId,jdbcType=BIGINT},
+      </if>
+      <if test="realPrice != null">
+        real_price = #{realPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="commodityName != null">
+        commodity_name = #{commodityName,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityDesc != null">
+        commodity_desc = #{commodityDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityLogo != null">
+        commodity_logo = #{commodityLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="referencePrice != null">
+        reference_price = #{referencePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="priceDesc != null">
+        price_desc = #{priceDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="validityType != null">
+        validity_type = #{validityType,jdbcType=SMALLINT},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="usingFlag != null">
+        using_flag = #{usingFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="sortFlag != null">
+        sort_flag = #{sortFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="commodityType != null">
+        commodity_type = #{commodityType,jdbcType=BIGINT},
+      </if>
+      <if test="supplierId != null">
+        supplier_id = #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="maxDealNum != null">
+        max_deal_num = #{maxDealNum,jdbcType=SMALLINT},
+      </if>
+      <if test="minDealNum != null">
+        min_deal_num = #{minDealNum,jdbcType=SMALLINT},
+      </if>
+      <if test="dealUnit != null">
+        deal_unit = #{dealUnit,jdbcType=SMALLINT},
+      </if>
+      <if test="totalBuyLimit != null">
+        total_buy_limit = #{totalBuyLimit,jdbcType=BIGINT},
+      </if>
+      <if test="toPayNum != null">
+        to_pay_num = #{toPayNum,jdbcType=INTEGER},
+      </if>
+      <if test="carriage != null">
+        carriage = #{carriage,jdbcType=NUMERIC},
+      </if>
+      <if test="stock != null">
+        stock = #{stock,jdbcType=BIGINT},
+      </if>
+      <if test="frozenStock != null">
+        frozen_stock = #{frozenStock,jdbcType=BIGINT},
+      </if>
+      <if test="inStorageTime != null">
+        in_storage_time = #{inStorageTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="operateUser != null">
+        operate_user = #{operateUser,jdbcType=BIGINT},
+      </if>
+      <if test="pointRealPrice != null">
+        point_real_price = #{pointRealPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="commodityPriceType != null">
+        commodity_price_type = #{commodityPriceType,jdbcType=VARCHAR},
+      </if>
+      <if test="activeType != null">
+        active_type = #{activeType,jdbcType=SMALLINT},
+      </if>
+      <if test="callService != null">
+        call_service = #{callService,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where commodity_id = #{commodityId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hd.beast.entity.entity2.TManagerCommodity">
+    update "public"."T_MANAGER_COMMODITY"
+    set supplier_com_id = #{supplierComId,jdbcType=BIGINT},
+      real_price = #{realPrice,jdbcType=NUMERIC},
+      commodity_name = #{commodityName,jdbcType=VARCHAR},
+      commodity_desc = #{commodityDesc,jdbcType=VARCHAR},
+      commodity_logo = #{commodityLogo,jdbcType=VARCHAR},
+      reference_price = #{referencePrice,jdbcType=VARCHAR},
+      price_desc = #{priceDesc,jdbcType=VARCHAR},
+      validity_type = #{validityType,jdbcType=SMALLINT},
+      start_time = #{startTime,jdbcType=BIGINT},
+      end_time = #{endTime,jdbcType=BIGINT},
+      using_flag = #{usingFlag,jdbcType=SMALLINT},
+      sort_flag = #{sortFlag,jdbcType=SMALLINT},
+      commodity_type = #{commodityType,jdbcType=BIGINT},
+      supplier_id = #{supplierId,jdbcType=BIGINT},
+      max_deal_num = #{maxDealNum,jdbcType=SMALLINT},
+      min_deal_num = #{minDealNum,jdbcType=SMALLINT},
+      deal_unit = #{dealUnit,jdbcType=SMALLINT},
+      total_buy_limit = #{totalBuyLimit,jdbcType=BIGINT},
+      to_pay_num = #{toPayNum,jdbcType=INTEGER},
+      carriage = #{carriage,jdbcType=NUMERIC},
+      stock = #{stock,jdbcType=BIGINT},
+      frozen_stock = #{frozenStock,jdbcType=BIGINT},
+      in_storage_time = #{inStorageTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      operate_user = #{operateUser,jdbcType=BIGINT},
+      point_real_price = #{pointRealPrice,jdbcType=NUMERIC},
+      commodity_price_type = #{commodityPriceType,jdbcType=VARCHAR},
+      active_type = #{activeType,jdbcType=SMALLINT},
+      call_service = #{callService,jdbcType=VARCHAR}
+    where commodity_id = #{commodityId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: @profiles.active@
+
+server:
+  port: 8080
+
+
+mybatis:
+#  mapper-locations: classpath:*/mapping/**.xml
+  type-aliases-package: com.hd.beast.entity
+
+

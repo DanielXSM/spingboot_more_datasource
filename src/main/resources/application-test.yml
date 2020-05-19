@@ -1,0 +1,26 @@
+active:
+  zdp: test
+server:
+  port: 8080
+
+spring:
+  datasource:
+    data1:
+      jdbc-url: jdbc:postgresql://10.100.21.106:5432/i20_gateway
+      username: postgres
+      password: postgres
+      driver-class-name: org.postgresql.Driver
+      type: com.alibaba.druid.pool.DruidDataSource   # 使用druid数据库连接池
+      filters: stat,wall,log4j   #druid 监控配置
+    data2:
+      jdbc-url: jdbc:postgresql://10.100.21.106:5432/spk_manager2
+      username: postgres
+      password: postgres
+      driverClassName: org.postgresql.Driver
+      type: com.alibaba.druid.pool.DruidDataSource   # 使用druid数据库连接池
+      filters: stat,wall,log4j   #druid 监控配置
+    dbcp2:
+      min-idle: 5          #最小维持的连接数
+      initial-size: 5  # 初始化提供的连接数
+      max-total: 10  # 最大的连接数
+      max-wait-millis: 200  # 等待连接获取的最大超时时间
