@@ -10,6 +10,7 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 @Configuration
@@ -30,5 +31,10 @@ public class DataSourceConfig2 {
     @Bean("sqlSessionTemplate2")
     public SqlSessionTemplate sqlSessionTemplate2(@Qualifier("sqlSessionFactory2") SqlSessionFactory sqlSessionFactory){
         return new SqlSessionTemplate(sqlSessionFactory);
+    }
+
+    @Bean
+    public DataSourceTransactionManager cbcBusinessTransctionManager2(@Qualifier("dataSource2") DataSource dataSource){
+        return new DataSourceTransactionManager(dataSource);
     }
 }

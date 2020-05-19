@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -49,4 +50,13 @@ public class DatsSourceConfig1 {
     public SqlSessionTemplate sqlSessionTemplate1(@Qualifier("sqlSessionFactory1") SqlSessionFactory sqlSessionFactory1){
        return new SqlSessionTemplate(sqlSessionFactory1);
     }
+
+
+
+    //    配置事务管理器
+    @Bean
+    public DataSourceTransactionManager cbcBusinessTransctionManager1(@Qualifier("dataSource1") DataSource dataSource){
+        return new DataSourceTransactionManager(dataSource);
+    }
+
 }
