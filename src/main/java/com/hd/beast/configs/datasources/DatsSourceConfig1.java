@@ -1,12 +1,15 @@
 package com.hd.beast.configs.datasources;
 
-import com.zaxxer.hikari.HikariDataSource;
+import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInterceptor;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
+
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +19,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
-import java.io.IOException;
+import java.util.Properties;
 
 @Configuration
 @MapperScan(basePackages = "com.hd.beast.mapper.mapper1",sqlSessionFactoryRef = "sqlSessionFactory1")
@@ -27,7 +30,7 @@ public class DatsSourceConfig1 {
     @ConfigurationProperties(prefix = "spring.datasource.data1",ignoreInvalidFields = true)
     public DataSource getDataSource1(){
 
-        return DataSourceBuilder.create().build();
+        return DruidDataSourceBuilder.create().build();
 //        return DataSourceBuilder.create(dataSourceProperties.getClassLoader())
 //                .type(HikariDataSource.class)
 //                .driverClassName(dataSourceProperties.determineDriverClassName())
@@ -43,6 +46,18 @@ public class DatsSourceConfig1 {
         SqlSessionFactoryBean bean=new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:/mapping/mapping1/*Mapper.xml"));
+        //配置分页插件
+//        PageHelper pageHelper = new PageHelper();
+        Interceptor pageHelper = new PageInterceptor();
+        Properties properties = new Properties();
+        properties.setProperty("reasonable", "true");
+        properties.setProperty("supportMethodsArguments", "true");
+        properties.setProperty("returnPageInfo", "check");
+        properties.setProperty("params", "count=countSql");
+        pageHelper.setProperties(properties);
+
+        //设置插件
+        bean.setPlugins(new Interceptor[]{pageHelper});
         return bean.getObject();
     }
     @Bean("sqlSessionTemplate1")
@@ -55,6 +70,7 @@ public class DatsSourceConfig1 {
 
     //    配置事务管理器
     @Bean
+    @Primary
     public DataSourceTransactionManager cbcBusinessTransctionManager1(@Qualifier("dataSource1") DataSource dataSource){
         return new DataSourceTransactionManager(dataSource);
     }
