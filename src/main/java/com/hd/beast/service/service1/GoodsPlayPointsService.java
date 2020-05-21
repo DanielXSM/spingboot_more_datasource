@@ -8,4 +8,6 @@ public interface GoodsPlayPointsService {
     List<TGoodsPlayPoint> selectAllgoods();
 
     int updateUsingflagByCommodityId();
+
+    TGoodsPlayPoint querStringyById(String id);
 }

@@ -29,4 +29,11 @@ public interface TGoodsPlayPointMapper {
     int updateByPrimaryKeySelective(TGoodsPlayPoint record);
 
     int updateByPrimaryKey(TGoodsPlayPoint record);
+
+    /**
+     * 自定义dao 方法
+     * @param id
+     * @return
+     */
+    TGoodsPlayPoint selectById(Long id);
 }

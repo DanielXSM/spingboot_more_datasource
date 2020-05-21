@@ -7,7 +7,7 @@ spring:
   datasource:
     data1:
       jdbc-url: jdbc:postgresql://10.100.20.211:5432/i20_gateway
-      url: jdbc:postgresql://10.100.20.11:5432/i20_gateway
+      url: jdbc:postgresql://10.100.20.211:5432/i20_gateway
       username: postgres
       password: postgres
       driver-class-name: org.postgresql.Driver

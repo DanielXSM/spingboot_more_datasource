@@ -605,4 +605,8 @@
       sell_amount_fake = #{sellAmountFake,jdbcType=NUMERIC}
     where goods_no = #{goodsNo,jdbcType=BIGINT}
   </update>
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List" /> from "public"."T_GOODS_PLAY_POINT"
+        where goods_no = #{id,jdbcType=BIGINT}
+    </select>
 </mapper>
