@@ -66,6 +66,15 @@ public class CommodityController {
         return tManagerCommodities.toString();
     }
 
-    
+    /**
+     * 更改商品的状态
+     * @return
+     */
+    @RequestMapping("/update1")
+    @ResponseBody
+    public String update1(){
+        int i= goodsPlayPointsService.updateUsingflagByCommodityId();
+        return i+""
+;    }
 
 }

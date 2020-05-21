@@ -11,3 +11,7 @@ mybatis:
   type-aliases-package: com.hd.beast.entity
 
 
+#在控制台打印sql日志
+logging:
+  level:
+    com.hd.beast.mapper.mapper1 : debug

@@ -68,8 +68,8 @@ public class DatsSourceConfig1 {
 
 
 
-    //    配置事务管理器
-    @Bean
+    //    配置数据库1的事务管理器
+    @Bean(name = "transactionManager1")
     @Primary
     public DataSourceTransactionManager cbcBusinessTransctionManager1(@Qualifier("dataSource1") DataSource dataSource){
         return new DataSourceTransactionManager(dataSource);

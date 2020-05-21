@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface GoodsPlayPointsService {
     List<TGoodsPlayPoint> selectAllgoods();
+
+    int updateUsingflagByCommodityId();
 }

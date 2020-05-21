@@ -50,7 +50,7 @@ public class DataSourceConfig2 {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 
-    @Bean
+    @Bean(name = "transactionManager2")
     public DataSourceTransactionManager cbcBusinessTransctionManager2(@Qualifier("dataSource2") DataSource dataSource){
         return new DataSourceTransactionManager(dataSource);
     }
