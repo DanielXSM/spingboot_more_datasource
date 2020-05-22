@@ -1,5 +1,9 @@
 package com.hd.beast.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.hd.beast.commonTools.requestModel.HDRequestModel;
+import com.hd.beast.commonTools.requestModel.hd.*;
+import com.hd.beast.commonTools.restTemplateUtils.RestemplateRequest;
 import com.hd.beast.entity.entity1.TGoodsPlayPoint;
 import com.hd.beast.entity.entity2.TManagerCommodity;
 import com.hd.beast.service.service1.GoodsPlayPointsService;
@@ -10,14 +14,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @Slf4j
@@ -26,6 +30,8 @@ public class CommodityController {
     @Autowired
     private GoodsPlayPointsService goodsPlayPointsService;
 
+    @Autowired
+    private RestemplateRequest restemplateRequest;
     @Resource
     private Manager2CommodityService manager2CommodityService;
     @Autowired
@@ -94,5 +100,65 @@ public class CommodityController {
         log.info("=================================================================>获取到的id:{}",id);
         TGoodsPlayPoint tGoodsPlayPoint= goodsPlayPointsService.querStringyById(id);
         return tGoodsPlayPoint.toString();
+    }
+
+    /**
+     * 查找积分牌价信息
+     * @return
+     */
+    @RequestMapping("queryPointsPrice")
+    @ResponseBody
+    public String queryPointsPrice(){
+        HDService hdService = new HDService("gp.point.bl.OrderBL", "queryQuotePriceList");
+
+//        System.out.println(json_hdService);
+
+
+        SessionModel sessionModel = new SessionModel();
+        sessionModel.setAuthorize_object_cv("1");
+        sessionModel.setDev_unique("B67B45CF0ABF8FCAD35496AE0151848D");
+        sessionModel.setToken("");
+        sessionModel.setTz_id("Asia/Shanghai");
+        HDSession hdSession = new HDSession(sessionModel);
+
+        HDRequest hdRequest = new HDRequest();
+        hdRequest.setSecurity(hdSession);
+        hdRequest.setService(hdService);
+        List<Object> client_list=new ArrayList<>();
+        HDRmote hdRmote=new HDRmote();
+        HDRoute hdRoute=new HDRoute();
+        HDClient hdClient=new HDClient();
+        hdClient.setRoute(hdRoute);
+        hdClient.setRemote(hdRmote);
+
+        hdRequest.setClient(hdClient);
+        hdRequest.setCall_uuid("RZ0FNI5VJUJ4P53QDJ3MBF1YC4SWWT0Y");
+        hdRequest.setBack("j");
+
+        Map<String,Object> maps=new HashMap<>();
+        maps.put("query_type","List");
+//        maps.put("order_id","1");
+   /*     Map<String,Object> maps1=new HashMap<>();
+        maps1.put("user_seq","2");
+        maps1.put("order_id","2");*/
+        HDParameter hdParameter=new HDParameter();
+        List<Map<String,Object>> list=new ArrayList<>();
+        list.add(maps);
+//        list.add(maps1);
+
+        hdParameter.setParameter(list);
+        hdRequest.setParameters(hdParameter);
+        Object json_hdRequest = JSON.toJSON(hdRequest);
+        HDRequestModel hdRequestModel=new         HDRequestModel();
+        hdRequestModel.setRequest(hdRequest);
+
+        Object json_hdRequestModel = JSON.toJSON(hdRequestModel);
+
+        String url="http://10.100.21.101:80/PS";
+        Map<String, Object> requestParam=new HashMap<>();
+        requestParam.put("request",json_hdRequest);
+        System.out.println(json_hdRequestModel);
+        ResponseEntity<String> responseEntity = restemplateRequest.sendPostRequest(url, requestParam);
+        return responseEntity.getBody();
     }
 }
