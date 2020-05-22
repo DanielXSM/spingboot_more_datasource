@@ -1,0 +1,8 @@
+2020-05-22 11:53:19.789 [ main ] - [ INFO  ] [ com.hd.beast.BeastApplication : 55 ] - Starting BeastApplication on DESKTOP-CI6I45U with PID 30772 (D:\xm\hd_springboot\target\classes started by liandian in D:\xm\hd_springboot)
+2020-05-22 11:53:19.797 [ main ] - [ INFO  ] [ com.hd.beast.BeastApplication : 655 ] - The following profiles are active: dev
+2020-05-22 11:53:22.455 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-8080"]
+2020-05-22 11:53:22.456 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2020-05-22 11:53:22.456 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-05-22 11:53:22.587 [ main ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring embedded WebApplicationContext
+2020-05-22 11:53:23.910 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-8080"]
+2020-05-22 11:53:24.003 [ main ] - [ INFO  ] [ com.hd.beast.BeastApplication : 61 ] - Started BeastApplication in 6.014 seconds (JVM running for 8.13)

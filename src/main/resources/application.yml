@@ -14,4 +14,8 @@ mybatis:
 #在控制台打印sql日志
 logging:
   level:
+#    root: info  全部的日志级别
     com.hd.beast.mapper.mapper1 : debug
+    com.hd.beast.mapper.mapper2: debug
+
+

@@ -4,6 +4,9 @@ import com.hd.beast.entity.entity1.TGoodsPlayPoint;
 import com.hd.beast.entity.entity2.TManagerCommodity;
 import com.hd.beast.service.service1.GoodsPlayPointsService;
 import com.hd.beast.service.service2.Manager2CommodityService;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -17,8 +20,9 @@ import java.util.Arrays;
 import java.util.List;
 
 @Controller
-
+@Slf4j
 public class CommodityController {
+//    private static final Logger Log=LoggerFactory.getLogger(CommodityController.class);
     @Autowired
     private GoodsPlayPointsService goodsPlayPointsService;
 
@@ -84,6 +88,10 @@ public class CommodityController {
     @RequestMapping("/query/{id}")
     @ResponseBody
     public String query3(@PathVariable("id")String id){
+        log.debug("日志输出测试 Debug");
+        log.trace("日志输出测试 Trace");
+        log.info("日志输出测试 Info");
+        log.info("=================================================================>获取到的id:{}",id);
         TGoodsPlayPoint tGoodsPlayPoint= goodsPlayPointsService.querStringyById(id);
         return tGoodsPlayPoint.toString();
     }

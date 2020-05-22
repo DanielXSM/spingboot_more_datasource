@@ -35,3 +35,6 @@ spring:
       test-on-return: false
       filter: stat,wall,log4j   #druid 监控配置
       log-slow-sql: true
+
+#日志打印的输出路径
+log_refer :      D:\xm\hd_springboot\logs
