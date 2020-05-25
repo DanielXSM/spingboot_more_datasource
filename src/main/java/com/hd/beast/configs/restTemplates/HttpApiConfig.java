@@ -10,26 +10,30 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
 public class HttpApiConfig {
 
+
+    /**
+     * 解决restTemplate 中文乱码的问题  https://blog.csdn.net/mryang125/article/details/80963280
+     * @param factory
+     * @return
+     */
     @Bean
     public RestTemplate restTemplate(ClientHttpRequestFactory factory) {
         RestTemplate restTemplate = new RestTemplate();
-        List<HttpMessageConverter<?>> converters= restTemplate.getMessageConverters();
-        List<MediaType> fastMediaTypes = new ArrayList<>();
-        MediaType type = MediaType.parseMediaType("application/json; charset=UTF-8");
-        // 处理中文乱码问题
-        fastMediaTypes.add(type);
-        FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
-        StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
-        stringConverter.setSupportedMediaTypes(fastMediaTypes);
-        fastConverter.setSupportedMediaTypes(fastMediaTypes);
-        converters.add(0, fastConverter);
-        converters.set(1,stringConverter);
+        List<HttpMessageConverter<?>> converters = restTemplate.getMessageConverters();
+        for (HttpMessageConverter<?> httpMessageConverter : converters) {
+            if (httpMessageConverter instanceof StringHttpMessageConverter) {
+                ((StringHttpMessageConverter) httpMessageConverter).setDefaultCharset(Charset.forName("UTF-8"));
+                break;
+            }
+        }
+
         return restTemplate;
 
     }

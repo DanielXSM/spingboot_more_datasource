@@ -98,3 +98,15 @@
 2020-05-22 16:59:17.652 [ main ] - [ DEBUG ] [ org.mybatis.spring.mapper.ClassPathMapperScanner : 49 ] - Creating MapperFactoryBean with name 'TManagerCommodityMapper' and 'com.hd.beast.mapper.mapper2.TManagerCommodityMapper' mapperInterface
 2020-05-22 16:59:17.663 [ main ] - [ DEBUG ] [ org.mybatis.spring.mapper.ClassPathMapperScanner : 435 ] - Identified candidate component class: file [D:\xm\hd_springboot\target\classes\com\hd\beast\mapper\mapper1\TGoodsPlayPointMapper.class]
 2020-05-22 16:59:17.663 [ main ] - [ DEBUG ] [ org.mybatis.spring.mapper.ClassPathMapperScanner : 49 ] - Creating MapperFactoryBean with name 'TGoodsPlayPointMapper' and 'com.hd.beast.mapper.mapper1.TGoodsPlayPointMapper' mapperInterface
+2020-05-22 17:00:47.705 [ main ] - [ DEBUG ] [ com.hd.beast.BeastApplication : 56 ] - Running with Spring Boot v2.3.0.RELEASE, Spring v5.2.6.RELEASE
+2020-05-22 17:00:49.575 [ main ] - [ DEBUG ] [ org.apache.ibatis.logging.LogFactory : 105 ] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2020-05-22 17:00:49.582 [ main ] - [ DEBUG ] [ org.mybatis.spring.mapper.ClassPathMapperScanner : 435 ] - Identified candidate component class: file [D:\xm\hd_springboot\target\classes\com\hd\beast\mapper\mapper2\TManagerCommodityMapper.class]
+2020-05-22 17:00:49.584 [ main ] - [ DEBUG ] [ org.mybatis.spring.mapper.ClassPathMapperScanner : 49 ] - Creating MapperFactoryBean with name 'TManagerCommodityMapper' and 'com.hd.beast.mapper.mapper2.TManagerCommodityMapper' mapperInterface
+2020-05-22 17:00:49.596 [ main ] - [ DEBUG ] [ org.mybatis.spring.mapper.ClassPathMapperScanner : 435 ] - Identified candidate component class: file [D:\xm\hd_springboot\target\classes\com\hd\beast\mapper\mapper1\TGoodsPlayPointMapper.class]
+2020-05-22 17:00:49.597 [ main ] - [ DEBUG ] [ org.mybatis.spring.mapper.ClassPathMapperScanner : 49 ] - Creating MapperFactoryBean with name 'TGoodsPlayPointMapper' and 'com.hd.beast.mapper.mapper1.TGoodsPlayPointMapper' mapperInterface
+2020-05-22 17:00:51.543 [ main ] - [ DEBUG ] [ org.mybatis.spring.SqlSessionFactoryBean : 49 ] - Property 'configuration' or 'configLocation' not specified, using default MyBatis Configuration
+2020-05-22 17:00:51.597 [ main ] - [ DEBUG ] [ org.mybatis.spring.SqlSessionFactoryBean : 49 ] - Registered plugin: 'com.github.pagehelper.PageInterceptor@7c1447b5'
+2020-05-22 17:00:51.764 [ main ] - [ DEBUG ] [ org.mybatis.spring.SqlSessionFactoryBean : 49 ] - Parsed mapper file: 'file [D:\xm\hd_springboot\target\classes\mapping\mapping2\TManagerCommodityMapper.xml]'
+2020-05-22 17:00:51.866 [ main ] - [ DEBUG ] [ org.mybatis.spring.SqlSessionFactoryBean : 49 ] - Property 'configuration' or 'configLocation' not specified, using default MyBatis Configuration
+2020-05-22 17:00:51.867 [ main ] - [ DEBUG ] [ org.mybatis.spring.SqlSessionFactoryBean : 49 ] - Registered plugin: 'com.github.pagehelper.PageInterceptor@388d14e'
+2020-05-22 17:00:51.900 [ main ] - [ DEBUG ] [ org.mybatis.spring.SqlSessionFactoryBean : 49 ] - Parsed mapper file: 'file [D:\xm\hd_springboot\target\classes\mapping\mapping1\TGoodsPlayPointMapper.xml]'

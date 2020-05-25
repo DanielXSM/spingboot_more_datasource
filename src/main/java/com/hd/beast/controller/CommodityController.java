@@ -1,6 +1,8 @@
 package com.hd.beast.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.hd.beast.commonTools.requestModel.HDRequestModel;
 import com.hd.beast.commonTools.requestModel.hd.*;
 import com.hd.beast.commonTools.restTemplateUtils.RestemplateRequest;
@@ -108,7 +110,7 @@ public class CommodityController {
      */
     @RequestMapping("queryPointsPrice")
     @ResponseBody
-    public String queryPointsPrice(){
+    public JSONObject queryPointsPrice(){
         HDService hdService = new HDService("gp.point.bl.OrderBL", "queryQuotePriceList");
 
 //        System.out.println(json_hdService);
@@ -158,7 +160,20 @@ public class CommodityController {
         Map<String, Object> requestParam=new HashMap<>();
         requestParam.put("request",json_hdRequest);
         System.out.println(json_hdRequestModel);
-        ResponseEntity<String> responseEntity = restemplateRequest.sendPostRequest(url, requestParam);
-        return responseEntity.getBody();
+        JSONObject jsonObject = restemplateRequest.sendPostRequest(url, requestParam);
+        JSONArray quotePrice = jsonObject.getJSONArray("quotePrice");
+        Map<String,String>maps_res=new HashMap();
+        StringBuilder stringBuilder=new StringBuilder();
+        String property = System.getProperty("line.separator");
+        for(int i=0;i<quotePrice.size();i++){
+            JSONObject o = (JSONObject)quotePrice.get(i);
+            String name_common = o.getString("name_common");
+            String name_point = o.getString("name_point");
+            String amplitude = o.getString("amplitude");
+            System.out.println(name_common+":"+name_point+"==="+amplitude);
+//            stringBuilder.append(name_common+":"+name_point+"==="+amplitude+"\n");
+//            maps_res.put(name_common+"："+name_point,amplitude)
+        }
+       return jsonObject;
     }
 }

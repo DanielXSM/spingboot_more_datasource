@@ -70,3 +70,12 @@
 2020-05-22 16:59:18.317 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.35]
 2020-05-22 16:59:18.441 [ main ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring embedded WebApplicationContext
 2020-05-22 16:59:18.586 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Stopping service [Tomcat]
+2020-05-22 17:00:47.688 [ main ] - [ INFO  ] [ com.hd.beast.BeastApplication : 55 ] - Starting BeastApplication on DESKTOP-CI6I45U with PID 28052 (D:\xm\hd_springboot\target\classes started by liandian in D:\xm\hd_springboot)
+2020-05-22 17:00:47.707 [ main ] - [ INFO  ] [ com.hd.beast.BeastApplication : 655 ] - The following profiles are active: dev
+2020-05-22 17:00:50.442 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-8080"]
+2020-05-22 17:00:50.444 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2020-05-22 17:00:50.444 [ main ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.35]
+2020-05-22 17:00:50.841 [ main ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring embedded WebApplicationContext
+2020-05-22 17:00:52.274 [ main ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-8080"]
+2020-05-22 17:00:52.335 [ main ] - [ INFO  ] [ com.hd.beast.BeastApplication : 61 ] - Started BeastApplication in 6.874 seconds (JVM running for 9.211)
+2020-05-22 17:00:59.409 [ http-nio-8080-exec-2 ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'

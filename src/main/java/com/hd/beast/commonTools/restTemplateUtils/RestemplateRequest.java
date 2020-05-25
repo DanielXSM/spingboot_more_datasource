@@ -2,8 +2,10 @@ package com.hd.beast.commonTools.restTemplateUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.hd.beast.commonTools.BizException;
 import com.hd.beast.commonTools.requestModel.HDRequestModel;
 import com.hd.beast.commonTools.requestModel.hd.*;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
@@ -20,7 +22,7 @@ public class RestemplateRequest {
     @Resource
     private RestTemplate restTemplate;
 
-    public  ResponseEntity<String>  sendPostRequest(String url, Map<String, Object> requestParam) {
+    public JSONObject sendPostRequest(String url, Map<String, Object> requestParam) {
 
         HttpHeaders headers = new HttpHeaders();
         HttpMethod method = HttpMethod.POST;
@@ -31,9 +33,32 @@ public class RestemplateRequest {
         HttpEntity<Map<String, Object>> request = new HttpEntity<Map<String, Object>>(requestParam, headers);
         ResponseEntity<String> responseEntity = restTemplate.postForEntity(url, request, String.class);
         String body = responseEntity.getBody();
-        System.out.println(body);
-        return responseEntity;
+        JSONObject jsonObject = JSON.parseObject(body);
+        String aReturn = jsonObject.getString("return");
 
+        System.out.println("==============================>return 的数据" + aReturn);
+        JSONObject jsonObject1 = JSON.parseObject(aReturn);
+        String head = jsonObject1.getString("head");
+        System.out.println("head 的数据======================>" + head);
+        JSONObject jsonObject2 = JSON.parseObject(head);
+//        JSONObject jsonObject3 = JSON.parseObject(jsonObject2);
+        String result = jsonObject2.getString("result");
+        System.out.println("获取的result 的结果===================>" + result);
+        JSONObject jsonObject3=null;
+        if (result.equalsIgnoreCase("success")) {
+            //成功的状态
+            String data = jsonObject1.getString("data");
+            jsonObject3 = JSON.parseObject(data);
+            System.out.println("获取data的数据：" + data);
+            return jsonObject3;
+        } else {
+            //失败的状态
+            String error_reason = jsonObject2.getString("error_reason");
+            String error_code = jsonObject2.getString("error_code");
+            String error_type = jsonObject2.getString("error_type");
+            //数据异常.抛出异常
+            throw new BizException(error_code, error_reason);
+        }
     }
 
     public static void main(String[] args) {
